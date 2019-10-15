@@ -3,9 +3,16 @@ import './Contact.css'
 
 
 class Contact extends React.Component {
-    state = {
-        online: false
+    constructor(props){
+        super(props);
+        this.state = {online: false};
     }
+
+    handleClick = (event) => {
+        this.setState({
+          online: !this.state.online
+        });
+      }
 
     render() {
     return (
@@ -16,10 +23,13 @@ class Contact extends React.Component {
                 <div>
                     <cite>{this.props.name}</cite>
                     <div className="status">
+                        
                         <div className="status-text">
-                        <div className={this.props.online ? "status-online" : "status-offline"}></div>
-                        {this.props.online ? 'Online' : 'Offline'}
+                        <div onClick={this.handleClick} className={this.state.online ? "status-online" : "status-offline"}></div>
+                        {this.state.online ? 'Online' : 'Offline'}
+
                         </div>
+
                     </div>
                 </div>
 
